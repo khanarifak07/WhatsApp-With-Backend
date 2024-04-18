@@ -26,3 +26,7 @@ ThemeData darkMode = ThemeData(
       const FloatingActionButtonThemeData(backgroundColor: Color(0xff1dc261)),
   fontFamily: "OpenSans",
 );
+
+ThemeData lightMode = ThemeData(
+  colorScheme: const ColorScheme.light()
+);

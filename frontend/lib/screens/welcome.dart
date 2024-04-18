@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:frontend/utils/helper_functions.dart';
 import 'package:frontend/screens/Homepage/homepage.dart';
+import 'package:frontend/utils/helper_functions.dart';
 import 'package:frontend/widgets/custom_elevated_button.dart';
 import 'package:frontend/widgets/privacy_policy.dart';
 
@@ -32,7 +32,7 @@ class WelcomePage extends StatelessWidget {
                 CustomElevatedButton(
                   text: "AGREE AND CONTINUE",
                   ontap: () {
-                    HelperFunctions.nextScreen(context, const HomePage());
+                    HelperFunctions.nextScreen(context, HomePage());
                   },
                 )
               ],

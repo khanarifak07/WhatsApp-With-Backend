@@ -1,11 +1,15 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:frontend/model/chat_model.dart';
 import 'package:frontend/screens/CameraAndVideo/camera_page.dart';
 import 'package:frontend/screens/Chats/chat_page.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  final List<ChatModel>? chatModel;
+  ChatModel? sourceChat;
+
+  HomePage({super.key, this.chatModel, this.sourceChat});
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -109,11 +113,14 @@ class _HomePageState extends State<HomePage>
         ),
         body: TabBarView(
           controller: tabController,
-          children: const [
-            CameraPage(),
-            ChatPage(),
-            Center(child: Text("data3")),
-            Center(child: Text("data4")),
+          children: [
+            const CameraPage(),
+            ChatPage(
+              chatModels: widget.chatModel,
+              sourceChat : widget.sourceChat,
+            ),
+            const Center(child: Text("data3")),
+            const Center(child: Text("data4")),
           ],
         ),
       ),

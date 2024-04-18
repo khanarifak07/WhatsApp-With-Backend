@@ -12,7 +12,9 @@ import 'package:socket_io_client/socket_io_client.dart' as IO;
 
 class IndividualChatPage extends StatefulWidget {
   final ChatModel chatModel;
-  const IndividualChatPage({super.key, required this.chatModel});
+  final ChatModel? sourceChat;
+  const IndividualChatPage(
+      {super.key, required this.chatModel, this.sourceChat});
 
   @override
   State<IndividualChatPage> createState() => _IndividualChatPageState();
@@ -23,6 +25,7 @@ class _IndividualChatPageState extends State<IndividualChatPage> {
   bool showEmoji = false;
   FocusNode focusNode = FocusNode();
   TextEditingController emojiController = TextEditingController();
+  TextEditingController messageCtrl = TextEditingController();
   late IO.Socket socket;
 
   @override
@@ -46,7 +49,7 @@ class _IndividualChatPageState extends State<IndividualChatPage> {
     //establish the connection
     socket.connect();
     //emit test
-    socket.emit('/test', 'Hello Arif');
+    socket.emit('signIn', widget.sourceChat!.id);
     //handle connection event
     socket.onConnect((data) => log("Connected to socket server"));
   }
@@ -54,6 +57,14 @@ class _IndividualChatPageState extends State<IndividualChatPage> {
   void disconnect() {
     socket.disconnect();
     log("Disconnected from Socket Server");
+  }
+
+  void sendMessage(String message, int sourceId, int targetId) {
+    socket.emit('message', {
+      'message': message,
+      'sourceId': sourceId,
+      'targetId': targetId,
+    });
   }
 
   @override
@@ -187,9 +198,20 @@ class _IndividualChatPageState extends State<IndividualChatPage> {
                               SizedBox(
                                 width: MediaQuery.sizeOf(context).width - 50,
                                 child: TextField(
-                                  controller: emojiController,
+                                  controller: messageCtrl,
                                   focusNode: focusNode,
                                   onChanged: (value) {
+                                    //First Approch
+                                    // if (value.length>0) {
+                                    //   setState(() {
+                                    //     isTyping = true;
+                                    //   });
+                                    // } else {
+                                    //   setState(() {
+                                    //     isTyping = false;
+                                    //   });
+                                    // }
+                                    //Second Approach
                                     setState(() {
                                       isTyping = value
                                           .isNotEmpty; //the value becomes true wile typing (onChange) if we delete message then value becomes false
@@ -266,10 +288,24 @@ class _IndividualChatPageState extends State<IndividualChatPage> {
                               CircleAvatar(
                                 radius: 22,
                                 backgroundColor: const Color(0xff23bd63),
-                                child: isTyping
-                                    ? const Icon(Icons.send)
-                                    : const Icon(Icons.mic),
-                              )
+                                child: IconButton(
+                                  onPressed: () {
+                                    if (isTyping) {
+                                      sendMessage(
+                                        messageCtrl.text,
+                                        widget.sourceChat!.id,
+                                        widget.chatModel.id,
+                                      );
+                                      messageCtrl.clear();
+                                    }
+                                  },
+                                  icon: isTyping
+                                      ? const Icon(Icons.send)
+                                      : const Icon(
+                                          Icons.mic,
+                                        ),
+                                ),
+                              ),
                             ],
                           ),
                           showEmoji
@@ -277,7 +313,7 @@ class _IndividualChatPageState extends State<IndividualChatPage> {
                                   height:
                                       MediaQuery.sizeOf(context).height * .30,
                                   child: EmojiPicker(
-                                    textEditingController: emojiController,
+                                    textEditingController: messageCtrl,
                                     onEmojiSelected: (category, emoji) {},
                                   ),
                                 )

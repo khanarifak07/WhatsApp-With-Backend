@@ -1,7 +1,7 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:frontend/screens/CameraAndVideo/camera_page.dart';
-import 'package:frontend/screens/Homepage/homepage.dart';
+import 'package:frontend/screens/Login/login_page.dart';
 import 'package:frontend/utils/theme/theme.dart';
 
 Future<void> main() async {
@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Whatsapp Me',
-      home: const HomePage(),
+      home: const LoginPage(),
       theme: darkMode,
     );
   }

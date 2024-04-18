@@ -5,7 +5,8 @@ import 'package:frontend/utils/helper_functions.dart';
 
 class ChatCard extends StatelessWidget {
   final ChatModel chatModel;
-  const ChatCard({super.key, required this.chatModel});
+  final ChatModel? sourceChat;
+  const ChatCard({super.key, required this.chatModel, this.sourceChat});
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +15,11 @@ class ChatCard extends StatelessWidget {
       child: GestureDetector(
         onTap: () {
           HelperFunctions.nextScreen(
-              context, IndividualChatPage(chatModel: chatModel));
+              context,
+              IndividualChatPage(
+                chatModel: chatModel,
+                sourceChat: sourceChat,
+              ));
         },
         child: ListTile(
           leading: chatModel.isGroup

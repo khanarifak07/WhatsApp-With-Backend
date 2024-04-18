@@ -15,6 +15,7 @@ class SelectContactPage extends StatelessWidget {
     final theme = Theme.of(context).colorScheme;
     List<ChatModel> contacts = [
       ChatModel(
+          id: 1,
           name: "Arif",
           currentMessage: "",
           time: " ",
@@ -22,6 +23,7 @@ class SelectContactPage extends StatelessWidget {
           icon: Icons.person,
           status: "Hey there! I am using WhatsApp"),
       ChatModel(
+          id: 2,
           name: "Hassan",
           currentMessage: "",
           time: " ",
@@ -29,6 +31,7 @@ class SelectContactPage extends StatelessWidget {
           icon: Icons.person,
           status: "Hey there! I am using WhatsApp"),
       ChatModel(
+          id: 3,
           name: "Sameer",
           currentMessage: "",
           time: " ",
@@ -36,6 +39,7 @@ class SelectContactPage extends StatelessWidget {
           icon: Icons.person,
           status: "Hey there! I am using WhatsApp"),
       ChatModel(
+          id: 4,
           name: "Test",
           currentMessage: "",
           time: " ",
@@ -43,6 +47,7 @@ class SelectContactPage extends StatelessWidget {
           icon: Icons.person,
           status: "Hey there! I am using WhatsApp"),
       ChatModel(
+          id: 5,
           name: "Test",
           currentMessage: "",
           time: " ",
@@ -50,19 +55,13 @@ class SelectContactPage extends StatelessWidget {
           icon: Icons.person,
           status: "Hey there! I am using WhatsApp"),
       ChatModel(
+          id: 6,
           name: "Test",
           currentMessage: "",
           time: " ",
           isGroup: false,
           icon: Icons.person,
           status: "Hey there! I am using WhatsApp"),
-      ChatModel(
-          name: "Test",
-          currentMessage: "",
-          time: " ",
-          isGroup: false,
-          icon: Icons.person,
-          status: "Hey there! I am using WhatsApp")
     ];
     return Scaffold(
       appBar: AppBar(

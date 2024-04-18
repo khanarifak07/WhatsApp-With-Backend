@@ -13,6 +13,7 @@ class CreateGroupPage extends StatefulWidget {
 class _CreateGroupPageState extends State<CreateGroupPage> {
   List<ChatModel> contacts = [
     ChatModel(
+        id: 1,
         name: "Arif",
         currentMessage: "",
         time: " ",
@@ -20,6 +21,7 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
         icon: Icons.person,
         status: "Hey there! I am using WhatsApp"),
     ChatModel(
+        id: 2,
         name: "Hassan",
         currentMessage: "",
         time: " ",
@@ -27,6 +29,7 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
         icon: Icons.person,
         status: "Hey there! I am using WhatsApp"),
     ChatModel(
+        id: 3,
         name: "Sameer",
         currentMessage: "",
         time: " ",
@@ -34,6 +37,7 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
         icon: Icons.person,
         status: "Hey there! I am using WhatsApp"),
     ChatModel(
+        id: 4,
         name: "Test",
         currentMessage: "",
         time: " ",
@@ -41,6 +45,7 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
         icon: Icons.person,
         status: "Hey there! I am using WhatsApp"),
     ChatModel(
+        id: 5,
         name: "Test",
         currentMessage: "",
         time: " ",
@@ -48,6 +53,7 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
         icon: Icons.person,
         status: "Hey there! I am using WhatsApp"),
     ChatModel(
+        id: 6,
         name: "Test",
         currentMessage: "",
         time: " ",

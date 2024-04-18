@@ -5,37 +5,14 @@ import 'package:frontend/utils/helper_functions.dart';
 import 'package:frontend/widgets/chat_card.dart';
 
 class ChatPage extends StatelessWidget {
-  const ChatPage({super.key});
+  final List<ChatModel>? chatModels;
+  final ChatModel? sourceChat;
+  const ChatPage({super.key, this.chatModels, this.sourceChat});
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context).colorScheme;
-    List<ChatModel> chats = [
-      ChatModel(
-        name: "Arif",
-        currentMessage: "Some randome message",
-        time: "4:18",
-        isGroup: false,
-        icon: Icons.person,
-        status: "",
-      ),
-      ChatModel(
-        name: "Sameer",
-        currentMessage: "Sameer ka message",
-        time: "18:40",
-        isGroup: false,
-        icon: Icons.person,
-        status: "",
-      ),
-      ChatModel(
-        name: "Universe Saat",
-        currentMessage: "Group messages",
-        time: "19:45",
-        isGroup: true,
-        icon: Icons.group,
-        status: "",
-      )
-    ];
+    // final theme = Theme.of(context).colorScheme;
+
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -47,10 +24,11 @@ class ChatPage extends StatelessWidget {
         ),
       ),
       body: ListView.builder(
-        itemCount: chats.length,
+        itemCount: chatModels!.length,
         itemBuilder: (BuildContext context, int index) {
           return ChatCard(
-            chatModel: chats[index],
+            chatModel: chatModels![index],
+            sourceChat: sourceChat,
           );
         },
       ),

@@ -9,13 +9,15 @@ class ChatModel {
   IconData icon;
   String status;
   bool select = false;
+  int id;
   ChatModel({
+    bool select = false,
     required this.name,
     required this.currentMessage,
     required this.time,
     required this.isGroup,
     required this.icon,
     required this.status,
-    bool select = false,
+    required this.id,
   });
 }
